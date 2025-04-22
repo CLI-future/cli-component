@@ -9,8 +9,18 @@
     "resolveJsonModule": true,
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
+    "typeRoots": [
+      "./node_modules/@types",
+      "./src/types"
+    ],
+    "types": ["node"]
   },
-  "include": ["src/**/*.ts","bin/*.js"],
-  "exclude": ["node_modules"],
-
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "bin/*.js"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }

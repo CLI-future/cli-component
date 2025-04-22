@@ -4,3 +4,4 @@ dist
 
 react-cli.config.json
 .eslintcache
+.env

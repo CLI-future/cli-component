@@ -6,6 +6,7 @@ import chalk from 'chalk'
 
 import { CONFIG_FILE, error, log, logObject, warning } from '../../utils/command-helpers.js'
 import { findProjectRoot } from '../../utils/file-manager.js'
+import { generateClientId } from '../../utils/crypto.js'
 
 // Function to load the configuration file if it exists
 const loadConfiguration = (configPath: string) => {
@@ -96,15 +97,20 @@ const askPreferences = async (configPath: string) => {
   ])
 
   // Save preferences to the config file
-  const config = {
-    styling: answers.styling,
-    language: answers.language,
-    testLibrary: answers.testLibrary,
+  const details = {
+    technicalConfig: {
+      styling: answers.styling,
+      language: answers.language,
+      testLibrary: answers.testLibrary,
+    },
+    clientConfig : {
+      clientId: generateClientId(),
+    }
   }
 
   await ensureGitignore(configPath)
 
-  writeFileSync(configPath, JSON.stringify(config, null, 2))
+  writeFileSync(configPath, JSON.stringify(details, null, 2))
   console.log(
     chalk.green.bold(`
 ========================================================================
