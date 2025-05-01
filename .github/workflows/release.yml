@@ -31,14 +31,11 @@ jobs:
           echo "## 🔄 Updates in this Release" >> $GITHUB_ENV
           echo "" >> $GITHUB_ENV
           
-          # Get the latest tag or use the initial commit if no tags exist
-          LATEST_TAG=$(git describe --tags --abbrev=0 2>/dev/null || git rev-list --max-parents=0 HEAD)
-          git fetch --prune --unshallow --tags || true
-          git log --pretty=format:"- %s" --first-parent ${LATEST_TAG}..HEAD >> $GITHUB_ENV
+          # Make sure we have full history
+          git fetch --prune --unshallow || true
           
-          echo "### Changes from feature branches:" >> $GITHUB_ENV
-          git fetch --prune --unshallow --tags || true
-          git log --pretty=format:"- %s" --first-parent ${LATEST_TAG}..HEAD >> $GITHUB_ENV
+           # Get all commits since branching from main/master
+          git log --pretty=format:"- %s" origin/main..HEAD >> $GITHUB_ENV
           
           echo "" >> $GITHUB_ENV
           echo "### 📝 Notes" >> $GITHUB_ENV
