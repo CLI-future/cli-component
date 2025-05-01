@@ -1,6 +1,6 @@
 {
-  "name": "@cli-future/cligen",
-  "version": "1.0.19",
+  "name": "cli-component",
+  "version": "1.0.2",
   "description": "A command-line interface (CLI) tool for generating components with customizable templates and interactive prompts",
   "author": "Arthur & Yura",
   "type": "module",
@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Artur199523/react-cli.git"
+    "url": "https://github.com/CLI-future/cli-component"
   },
   "bin": {
     "clic": "bin/index.js",
@@ -32,11 +32,8 @@
   "dependencies": {
     "chalk": "^5.4.1",
     "commander": "^13.1.0",
-    "dotenv": "^16.5.0",
     "inquirer": "^12.5.0",
     "is-wsl": "^3.1.0",
-    "node-fetch": "^3.3.2",
-    "open": "^10.1.2",
     "ora": "^8.2.0"
   },
   "devDependencies": {
