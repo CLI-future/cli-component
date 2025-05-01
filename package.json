@@ -1,6 +1,6 @@
 {
   "name": "cli-component",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A command-line interface (CLI) tool for generating components with customizable templates and interactive prompts",
   "author": "Arthur & Yura",
   "type": "module",
@@ -13,7 +13,7 @@
   },
   "bin": {
     "clic": "bin/index.js",
-    "cli-component": "bin/index.js"
+    "cli-components": "bin/index.js"
   },
   "files": [
     "/dist",
