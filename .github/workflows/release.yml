@@ -26,12 +26,12 @@ jobs:
         id: release-notes
         run: |
           echo "RELEASE_BODY<<EOF" >> $GITHUB_ENV
-          echo "# Release v${{ steps.version.outputs.current_version }} ($(date +'%Y-%m-%d'))" >> $GITHUB_ENV
+          echo "# ($(date +'%Y-%m-%d'))" >> $GITHUB_ENV
           echo "" >> $GITHUB_ENV
-          echo "## 🎉 New Release" >> $GITHUB_ENV
           # Get commit messages since last tag
-          echo "### Changes since last release:" >> $GITHUB_ENV
-          git log $(git describe --tags --abbrev=0 2>/dev/null || echo HEAD)..HEAD --pretty=format:"- %s" >> $GITHUB_ENV
+          echo "### Recent Changes:" >> $GITHUB_ENV
+          git log -10 --pretty=format:"- %s" >> $GITHUB_ENV
+          echo "" >> $GITHUB_ENV
           echo "EOF" >> $GITHUB_ENV
 
       - name: Create GitHub release
