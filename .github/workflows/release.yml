@@ -22,12 +22,6 @@ jobs:
           version=$(jq -r '.version' package.json)
           echo "current_version=$version" >> $GITHUB_OUTPUT
 
-#      - uses: navikt/github-app-token-generator@v1.0.0
-#        id: get-token
-#        with:
-#          private-key: ${{ secrets.TOKENS_PRIVATE_KEY }}
-#          app-id: ${{ secrets.TOKENS_APP_ID }}
-
       - name: Create GitHub release
         id: create-release
         uses: actions/create-release@v1
