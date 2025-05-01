@@ -1,6 +1,6 @@
 {
   "name": "cli-component",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A command-line interface (CLI) tool for generating components with customizable templates and interactive prompts",
   "author": "Arthur & Yura",
   "type": "module",
