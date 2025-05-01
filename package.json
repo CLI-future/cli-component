@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/CLI-future/cli-components.git"
+    "url": "https://github.com/Artur199523/react-cli.git"
   },
   "bin": {
     "clic": "bin/index.js",
