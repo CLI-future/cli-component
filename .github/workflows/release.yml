@@ -22,13 +22,25 @@ jobs:
           version=$(jq -r '.version' package.json)
           echo "current_version=$version" >> $GITHUB_OUTPUT
 
+      - name: Generate Release Notes
+        id: release-notes
+        run: |
+          echo "RELEASE_BODY<<EOF" >> $GITHUB_ENV
+          echo "# Release v${{ steps.version.outputs.current_version }} ($(date +'%Y-%m-%d'))" >> $GITHUB_ENV
+          echo "" >> $GITHUB_ENV
+          echo "## 🎉 New Release" >> $GITHUB_ENV
+          # Get commit messages since last tag
+          echo "### Changes since last release:" >> $GITHUB_ENV
+          git log $(git describe --tags --abbrev=0 2>/dev/null || echo HEAD)..HEAD --pretty=format:"- %s" >> $GITHUB_ENV
+          echo "EOF" >> $GITHUB_ENV
+
       - name: Create GitHub release
         id: create-release
         uses: actions/create-release@v1
         with:
           tag_name: v${{ steps.version.outputs.current_version }}
           release_name: "Release v${{ steps.version.outputs.current_version }}"
-          body: "Automatically created release for version v${{ steps.version.outputs.current_version }}."
+          body: ${{ env.RELEASE_BODY }}
           draft: false
           prerelease: false
         env:
