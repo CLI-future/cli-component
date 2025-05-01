@@ -1,7 +1,7 @@
 {
-  "name": "react-cli-ay",
-  "version": "7.1.15",
-  "description": "CLI for creating React components",
+  "name": "cli-component",
+  "version": "1.0.0",
+  "description": "A command-line interface (CLI) tool for generating components with customizable templates and interactive prompts",
   "author": "Arthur & Yura",
   "type": "module",
   "engines": {
@@ -9,11 +9,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Artur199523/react-cli.git"
+    "url": "https://github.com/CLI-future/cli-component"
   },
   "bin": {
-    "rcli": "bin/index.js",
-    "react-cli-ay": "bin/index.js"
+    "clic": "bin/index.js",
+    "cli-component": "bin/index.js"
   },
   "files": [
     "/dist",
