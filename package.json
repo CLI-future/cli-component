@@ -1,6 +1,6 @@
 {
   "name": "@cli-future/cligen",
-  "version": "1.0.3",
+  "version": "1.0.8",
   "description": "A command-line interface (CLI) tool for generating components with customizable templates and interactive prompts",
   "author": "Arthur & Yura",
   "type": "module",
