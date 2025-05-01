@@ -5,6 +5,3 @@ export interface PackageJson {
   devDependencies: Record<string, string>
   [key: string]: unknown
 }
-
-
-
