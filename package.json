@@ -1,6 +1,6 @@
 {
-  "name": "@cli-future/cligen",
-  "version": "1.0.19",
+  "name": "cli-component",
+  "version": "1.0.3",
   "description": "A command-line interface (CLI) tool for generating components with customizable templates and interactive prompts",
   "author": "Arthur & Yura",
   "type": "module",
@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/CLI-future/cli-components.git"
+    "url": "https://github.com/CLI-future/cli-component"
   },
   "bin": {
     "clic": "bin/index.js",
