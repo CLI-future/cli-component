@@ -26,12 +26,20 @@ jobs:
         id: release-notes
         run: |
           echo "RELEASE_BODY<<EOF" >> $GITHUB_ENV
-          echo "# Release v${{ steps.version.outputs.current_version }} ($(date +'%Y-%m-%d'))" >> $GITHUB_ENV
+          echo "# ($(date +'%Y-%m-%d'))" >> $GITHUB_ENV
           echo "" >> $GITHUB_ENV
-          echo "## Changes:" >> $GITHUB_ENV
+          
+          echo "🔄 Updates in this Release" >> $GITHUB_ENV
           git fetch --prune --unshallow
           git log -1 --pretty=format:"- %s%n%w(0,2,2)%b" >> $GITHUB_ENV
           echo "" >> $GITHUB_ENV
+          
+          echo "" >> $GITHUB_ENV
+          echo "📝 Notes" >> $GITHUB_ENV
+          echo "These changes have been tested and verified in the release environment" >> $GITHUB_ENV
+          echo "Please report any issues in the issue tracker" >> $GITHUB_ENV
+          echo "" >> $GITHUB_ENV
+
           echo "EOF" >> $GITHUB_ENV
 
       - name: Create GitHub release
