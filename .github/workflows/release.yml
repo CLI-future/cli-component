@@ -30,7 +30,8 @@ jobs:
           echo "" >> $GITHUB_ENV
           # Get commit messages since last tag
           echo "### Recent Changes:" >> $GITHUB_ENV
-          git log -10 --pretty=format:"- %s" >> $GITHUB_ENV
+          git fetch --prune --unshallow
+          git log $(git describe --tags --abbrev=0 HEAD^)..HEAD --pretty=format:"- %s" >> $GITHUB_ENV
           echo "" >> $GITHUB_ENV
           echo "EOF" >> $GITHUB_ENV
 
