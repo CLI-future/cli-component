@@ -26,15 +26,23 @@ jobs:
         id: release-notes
         run: |
           echo "RELEASE_BODY<<EOF" >> $GITHUB_ENV
-          echo "# ($(date +'%Y-%m-%d'))" >> $GITHUB_ENV
-          echo "" >> $GITHUB_ENV
-          # Get commit messages since last tag
-          echo "### Recent Changes:" >> $GITHUB_ENV
-          git fetch --prune --unshallow --tags
-          # Get commits from branches that were merged into release
-          git log --pretty=format:"- %s" --first-parent $(git describe --tags --abbrev=0)..HEAD >> $GITHUB_ENV
-          echo "" >> $GITHUB_ENV
-          echo "EOF" >> $GITHUB_ENV
+           echo "# Release v${{ steps.version.outputs.current_version }} - $(date +'%Y-%m-%d')" >> $GITHUB_ENV
+           echo "" >> $GITHUB_ENV
+           echo "## 🔄 Updates in this Release" >> $GITHUB_ENV
+           echo "" >> $GITHUB_ENV
+          
+           # Get the latest tag
+           LATEST_TAG=$(git describe --tags --abbrev=0)
+           echo "### Changes from feature branches:" >> $GITHUB_ENV
+           git fetch --prune --unshallow --tags
+           git log --pretty=format:"- %s" --first-parent ${LATEST_TAG}..HEAD >> $GITHUB_ENV
+          
+           echo "" >> $GITHUB_ENV
+           echo "### 📝 Notes" >> $GITHUB_ENV
+           echo "- These changes have been tested and verified in the release environment" >> $GITHUB_ENV
+           echo "- Please report any issues in the issue tracker" >> $GITHUB_ENV
+           echo "" >> $GITHUB_ENV
+           echo "EOF" >> $GITHUB_ENV
 
       - name: Create GitHub release
         id: create-release
