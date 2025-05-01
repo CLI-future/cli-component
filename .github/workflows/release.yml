@@ -30,7 +30,7 @@ jobs:
           echo "" >> $GITHUB_ENV
           echo "## Changes:" >> $GITHUB_ENV
           git fetch --prune --unshallow
-          git log -1 --pretty=format:"- %s" >> $GITHUB_ENV
+          git log -1 --pretty=format:"- %s%n%w(0,2,2)%b" >> $GITHUB_ENV
           echo "" >> $GITHUB_ENV
           echo "EOF" >> $GITHUB_ENV
 
