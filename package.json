@@ -13,7 +13,7 @@
   },
   "bin": {
     "clic": "bin/index.js",
-    "cli-component": "bin/index.js"
+    "cli-components": "bin/index.js"
   },
   "files": [
     "/dist",
