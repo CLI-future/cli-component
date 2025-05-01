@@ -33,6 +33,8 @@ jobs:
           
           # Get the latest tag or use the initial commit if no tags exist
           LATEST_TAG=$(git describe --tags --abbrev=0 2>/dev/null || git rev-list --max-parents=0 HEAD)
+          git fetch --prune --unshallow --tags || true
+          git log --pretty=format:"- %s" --first-parent ${LATEST_TAG}..HEAD >> $GITHUB_ENV
           
           echo "### Changes from feature branches:" >> $GITHUB_ENV
           git fetch --prune --unshallow --tags || true
