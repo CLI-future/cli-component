@@ -1,7 +1,7 @@
 {
-  "name": "react-cli-ay",
-  "version": "7.1.15",
-  "description": "CLI for creating React components",
+  "name": "@cli-future/cligen",
+  "version": "1.0.19",
+  "description": "A command-line interface (CLI) tool for generating components with customizable templates and interactive prompts",
   "author": "Arthur & Yura",
   "type": "module",
   "engines": {
@@ -9,11 +9,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Artur199523/react-cli.git"
+    "url": "https://github.com/CLI-future/cli-components.git"
   },
   "bin": {
-    "rcli": "bin/index.js",
-    "react-cli-ay": "bin/index.js"
+    "clic": "bin/index.js",
+    "cli-components": "bin/index.js"
   },
   "files": [
     "/dist",
@@ -32,11 +32,8 @@
   "dependencies": {
     "chalk": "^5.4.1",
     "commander": "^13.1.0",
-    "crypto": "^1.0.1",
     "inquirer": "^12.5.0",
     "is-wsl": "^3.1.0",
-    "node-fetch": "^3.3.2",
-    "open": "^10.1.1",
     "ora": "^8.2.0"
   },
   "devDependencies": {
