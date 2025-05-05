@@ -9,7 +9,7 @@ const arch = os.arch() === 'ia32' ? 'x86' : os.arch()
 export const USER_AGENT = (name: string, version: string) =>
   `${name}/${version} ${platform}-${arch} node-${process.version}`
 
-export const CONFIG_FILE = 'react-cli.config.json'
+export const CONFIG_FILE = 'cli-components.config.json'
 
 export const log = (message: string) => {
   console.log(chalk.green(message))

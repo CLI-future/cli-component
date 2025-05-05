@@ -5,3 +5,9 @@ export interface PackageJson {
   devDependencies: Record<string, string>
   [key: string]: unknown
 }
+
+export interface ConfigFileStatus {
+  isAvailable: boolean;
+  path: string;
+  config: CliConfig | null
+}

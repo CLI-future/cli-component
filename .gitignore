@@ -2,6 +2,6 @@
 dist
 /node_modules
 
-react-cli.config.json
 .eslintcache
 .env
+cli-components.config.json

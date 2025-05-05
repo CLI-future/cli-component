@@ -5,6 +5,11 @@ declare global {
     code: number
     errorData: unknown
   }
+
+  interface CliConfig {
+    technicalConfig: any,
+    clientConfig: any
+  }
 }
 
 export {}

@@ -1,9 +1,11 @@
+import fs, { existsSync, readFileSync } from 'fs'
 import path, { dirname, join } from 'path'
 import { readFile } from 'fs/promises'
-import fs, { existsSync } from 'fs'
 import { fileURLToPath } from 'url'
 
-import { PackageJson } from './types.js'
+import { CONFIG_FILE, error } from './command-helpers.js'
+import { ConfigFileStatus, PackageJson } from './types.js'
+import { ErrorMessages } from './messages/error.js'
 
 // Ensure that directories exist before writing files
 export const ensureDirectoryExists = (dir: string) => {
@@ -52,4 +54,37 @@ export const getPackageJson = async (): Promise<PackageJson> => {
   const packageJsonPath = join(dirname(fileURLToPath(import.meta.url)), '../../package.json')
 
   return JSON.parse(await readFile(packageJsonPath, 'utf-8'))
+}
+
+/**
+ * Checks if the configuration file exists in the project
+ * @returns Object containing availability status and file path
+ * @throws Error if filesystem operations fail
+ */
+export const checkConfigFileAvailability = (): ConfigFileStatus => {
+  const NOT_FOUND: ConfigFileStatus = {
+    isAvailable: false,
+    path: '',
+    config: null,
+  }
+
+  try {
+    const rootDirectory = findProjectRoot(['package.json', 'git', CONFIG_FILE])
+    if (!rootDirectory) {
+      error(ErrorMessages.ROOT_NOT_FOUND)
+      return NOT_FOUND
+    }
+
+    const configPath = join(rootDirectory, CONFIG_FILE)
+    return existsSync(configPath)
+      ? {
+        isAvailable: true,
+        path: configPath,
+        config: JSON.parse(readFileSync(configPath, 'utf8')),
+      }
+      : (error(ErrorMessages.CONFIG_FILE_NOT_FOUND), NOT_FOUND)
+  } catch (err) {
+    error(ErrorMessages.FILE_SYSTEM_ERROR, err)
+    return NOT_FOUND
+  }
 }
